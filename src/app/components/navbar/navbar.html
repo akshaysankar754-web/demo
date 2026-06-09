@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow-sm rounded-bottom-4 mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" routerLink="/dashboard">Internship Portal</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="topNavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" routerLink="/dashboard">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/applications">My Courses</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/admin">Admin</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/materials">Materials</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/feedback">Feedback</a></li>
+      </ul>
+
+      <div class="d-flex gap-2">
+        <ng-container *ngIf="!isLoggedIn(); else loggedInActions">
+          <a class="btn btn-outline-light btn-sm" routerLink="/login">Login</a>
+          <a class="btn btn-outline-light btn-sm" routerLink="/register">Register</a>
+        </ng-container>
+
+        <ng-template #loggedInActions>
+          <button class="btn btn-light btn-sm" type="button" (click)="logout()">Logout</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>
+

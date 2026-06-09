@@ -1,0 +1,144 @@
+<div class="register-page container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+
+<div class="card shadow p-4 w-100 register-card">
+
+<h2 class="text-center mb-4">
+
+Student Register
+
+</h2>
+
+<form
+[formGroup]="registerForm"
+(ngSubmit)="submitForm()">
+
+<div class="mb-3">
+
+<input
+type="text"
+class="form-control"
+placeholder="Name"
+formControlName="name">
+
+</div>
+
+
+<div class="mb-3">
+
+<input
+type="email"
+class="form-control"
+placeholder="Email"
+formControlName="email">
+
+</div>
+
+
+<div class="mb-3">
+
+<input
+type="password"
+class="form-control"
+placeholder="Password"
+formControlName="password">
+
+@if(
+registerForm.get('password')?.errors?.['minlength']
+&&
+registerForm.get('password')?.touched
+){
+
+<p class="text-danger mt-2">
+
+Password must contain
+minimum 6 characters
+
+</p>
+
+}
+
+</div>
+
+
+<div class="row g-3 mb-3">
+  <div class="col-md-4">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="CGPA"
+      formControlName="cgpa">
+  </div>
+  <div class="col-md-4">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Backlogs"
+      formControlName="backlogs">
+  </div>
+  <div class="col-md-4">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Passing Year"
+      formControlName="passingYear">
+  </div>
+</div>
+
+<div class="mb-3">
+
+<input
+	type="text"
+	class="form-control"
+	placeholder="Department"
+	formControlName="department">
+
+</div>
+
+<div class="mb-3">
+
+<input
+type="text"
+class="form-control"
+placeholder="College Name"
+formControlName="collegeName">
+
+</div>
+
+
+<button
+class="btn btn-primary w-100"
+type="submit"
+  [disabled]="loading">
+
+Register
+
+</button>
+
+<!-- Verification handled on separate page -->
+</form>
+
+
+<div class="alert alert-success text-center mt-3 py-2 border-0" *ngIf="successMessage">
+  {{successMessage}}
+</div>
+
+<div class="alert alert-danger text-center mt-3 py-2 border-0" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+
+
+<p class="text-center mt-3">
+
+Already have account?
+
+<a routerLink="/login">
+
+Login
+
+</a>
+
+</p>
+
+</div>
+
+</div>

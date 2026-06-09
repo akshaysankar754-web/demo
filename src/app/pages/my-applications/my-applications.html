@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="row gx-0">
+    <div class="col-md-2">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="col-md-10 p-5 bg-light min-vh-100">
+      <div class="page-panel p-4 shadow-sm rounded-4 bg-white mb-4">
+        <h2>{{ isAdmin ? 'Applications' : 'My Applications' }}</h2>
+        <p class="text-muted mb-0">{{ isAdmin ? 'Review and manage internship applications.' : 'View your application status and history.' }}</p>
+      </div>
+
+      <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status"></div>
+      </div>
+
+      <div *ngIf="!loading && applications.length === 0" class="alert alert-warning">
+        No applications found.
+      </div>
+
+      <div *ngIf="!loading && isAdmin" class="table-responsive">
+        <table class="table table-hover align-middle bg-white rounded-4 shadow-sm overflow-hidden">
+          <thead class="table-light">
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Internship</th>
+              <th>CGPA</th>
+              <th>Status</th>
+              <th>Applied At</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of applications">
+              <td>{{ app.applicantName }}</td>
+              <td>{{ app.applicantEmail }}</td>
+              <td>{{ app.internshipTitle }}</td>
+              <td>{{ app.cgpa }}</td>
+              <td>
+                <span class="badge" [ngClass]="{
+                  'bg-success': app.status === 'Accepted',
+                  'bg-danger': app.status === 'Rejected',
+                  'bg-warning text-dark': app.status === 'Pending'
+                }">{{ app.status }}</span>
+              </td>
+              <td>{{ app.appliedAt | date:'mediumDate' }}</td>
+              <td class="text-end">
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-success" (click)="updateStatus(app.id, 'Accepted')">Accept</button>
+                  <button class="btn btn-danger" (click)="updateStatus(app.id, 'Rejected')">Reject</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="!loading && !isAdmin" class="row g-4">
+        <div class="col-md-6" *ngFor="let app of applications">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h4 class="card-title">{{ app.internshipTitle }}</h4>
+              <p class="mb-2"><strong>Company:</strong> {{ app.companyName }}</p>
+              <p class="mb-2"><strong>Status:</strong> {{ app.status }}</p>
+              <p class="mb-2"><strong>Applied:</strong> {{ app.appliedAt | date:'mediumDate' }}</p>
+              <p class="mb-0"><strong>Deadline:</strong> {{ app.deadline | date:'mediumDate' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

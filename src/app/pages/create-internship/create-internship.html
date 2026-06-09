@@ -1,0 +1,81 @@
+<div class="container mt-5">
+
+<div class="card shadow p-4 mx-auto"
+style="max-width:500px;">
+
+<h2 class="mb-4 text-center">
+Create Internship
+</h2>
+
+<form
+[formGroup]="internshipForm"
+(ngSubmit)="submitForm()"
+>
+
+<input
+type="text"
+class="form-control mb-3"
+placeholder="Title"
+formControlName="title"
+/>
+
+<textarea
+class="form-control mb-3"
+placeholder="Description"
+formControlName="description"
+></textarea>
+
+<input
+type="number"
+class="form-control mb-3"
+placeholder="Minimum CGPA"
+formControlName="minimumCGPA"
+/>
+
+<input
+ type="number"
+ class="form-control mb-3"
+ placeholder="Maximum Backlogs"
+ formControlName="maximumBacklogs"
+ />
+
+<input
+ type="text"
+ class="form-control mb-3"
+ placeholder="Department"
+ formControlName="department"
+ />
+
+
+<input
+type="date"
+class="form-control mb-3"
+formControlName="deadline"
+/>
+
+<input
+type="text"
+class="form-control mb-3"
+placeholder="Company Name"
+formControlName="companyName"
+/>
+
+<input
+type="number"
+class="form-control mb-3"
+placeholder="Number Of Seats"
+formControlName="numberOfSeats"
+/>
+
+<button
+class="btn btn-success w-100"
+type="submit"
+>
+Create Internship
+</button>
+
+</form>
+
+</div>
+
+</div>

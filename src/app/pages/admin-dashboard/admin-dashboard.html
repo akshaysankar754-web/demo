@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="row gx-0">
+    <div class="col-md-2">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="col-md-10 p-5 bg-light min-vh-100">
+      <div class="page-panel p-4 shadow-sm rounded-4 bg-white mb-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+          <div>
+            <h2>Admin Dashboard</h2>
+            <p class="text-muted mb-0">Monitor internships, applications, materials, and feedback status.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-success" routerLink="/create-internship">Create Internship</button>
+            <button class="btn btn-outline-primary" (click)="toggleFeedback()">{{ feedbackOpen ? 'Close Feedback' : 'Open Feedback' }}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-3" *ngFor="let key of statsKeys">
+          <div class="card shadow-sm rounded-4 p-4 h-100">
+            <div class="text-muted text-uppercase small mb-2">
+              {{ key === 'totalStudents' ? 'Total Students' : key === 'totalInternships' ? 'Total Internships' : key === 'totalApplications' ? 'Total Applications' : 'Accepted Applications' }}
+            </div>
+            <div class="display-6 fw-bold text-primary">{{ stats[key] }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4" *ngFor="let internship of internships">
+          <div class="card shadow-sm rounded-4 h-100">
+            <div class="card-body d-flex flex-column">
+              <h5>{{ internship.title }}</h5>
+              <p class="text-muted mb-2">{{ internship.companyName }}</p>
+              <div class="mb-3">
+                <span class="badge bg-secondary me-2">{{ internship.department || 'All Departments' }}</span>
+                <span class="badge bg-info text-dark">Min CGPA {{ internship.minimumCGPA }}</span>
+              </div>
+              <p class="mb-3">Applications received: <strong>{{ internship.filledSeats }}</strong></p>
+              <p class="mb-3">Deadline: {{ internship.deadline | date:'mediumDate' }}</p>
+              <button class="btn btn-primary mt-auto" (click)="viewApplicants(internship.id)">View Applicants</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="showApplicants" class="mt-5">
+        <div class="card shadow-sm rounded-4 p-4 bg-white">
+          <h3 class="mb-4">Applicants</h3>
+
+          <div *ngIf="selectedApplications.length === 0" class="alert alert-warning">
+            No applicants yet.
+          </div>
+
+          <div *ngIf="selectedApplications.length > 0" class="table-responsive">
+            <table class="table table-striped align-middle">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>CGPA</th>
+                  <th>College</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let app of selectedApplications">
+                  <td>{{ app.name }}</td>
+                  <td>{{ app.email }}</td>
+                  <td>{{ app.cgpa }}</td>
+                  <td>{{ app.collegeName || 'N/A' }}</td>
+                  <td>
+                    <span class="badge rounded-pill" [ngClass]="{
+                      'bg-success': app.status === 'Accepted',
+                      'bg-danger': app.status === 'Rejected',
+                      'bg-warning text-dark': app.status === 'Pending'
+                    }">{{ app.status }}</span>
+                  </td>
+                  <td>
+                    <div class="d-flex gap-2">
+                      <button class="btn btn-sm btn-outline-success" (click)="acceptApplicant(app.id)">Accept</button>
+                      <button class="btn btn-sm btn-outline-danger" (click)="rejectApplicant(app.id)">Reject</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

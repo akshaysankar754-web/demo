@@ -1,0 +1,13 @@
+.card {
+  border-radius: 22px;
+}
+
+.btn-outline-primary.active {
+  background: linear-gradient(135deg, #0d6efd 0%, #6f42c1 100%);
+  color: #fff;
+  border-color: transparent;
+}
+
+.list-group-item:hover {
+  transform: translateY(-1px);
+}

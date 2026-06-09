@@ -1,0 +1,18 @@
+<div class="sidebar d-flex flex-column text-white p-4">
+  <div class="sidebar-brand mb-5">
+    InternshipHub
+  </div>
+
+  <nav class="nav flex-column gap-2">
+    <a class="nav-link" routerLink="/dashboard" *ngIf="!isAdmin">Internships</a>
+    <a class="nav-link" routerLink="/applications">{{ isAdmin ? 'Applications' : 'My Applications' }}</a>
+    <a class="nav-link" routerLink="/materials">Materials</a>
+    <a class="nav-link" routerLink="/feedback">Feedback</a>
+    <a class="nav-link" routerLink="/profile" *ngIf="!isAdmin">Profile</a>
+    <a class="nav-link" routerLink="/admin" *ngIf="isAdmin">Dashboard</a>
+  </nav>
+
+  <button class="btn btn-light btn-sm mt-auto" (click)="logout()">
+    Logout
+  </button>
+</div>

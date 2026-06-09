@@ -1,0 +1,20 @@
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card p-4" style="width:420px">
+    <h3 class="text-center mb-4">{{ action === 'login' ? 'Enter Login OTP' : 'Verify Email' }}</h3>
+
+    <p class="text-center text-muted">We sent a verification code to <strong>{{email}}</strong></p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Verification Code" formControlName="otp">
+      </div>
+
+      <button class="btn btn-primary w-100" type="submit">{{ action === 'login' ? 'Login' : 'Verify' }}</button>
+    </form>
+
+    <p class="text-success text-center mt-3">{{successMessage}}</p>
+    <p class="text-danger text-center mt-2">{{errorMessage}}</p>
+
+    <p class="text-center mt-3">Back to <a routerLink="/login">Login</a></p>
+  </div>
+</div>

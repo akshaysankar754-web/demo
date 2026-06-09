@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "U6eZbnUe93tob+xpshCSZ9iAcB9827igzvTTQEdNmDKd12E4aNhCqChKVxyLo213HCP5JwevVTn2eKy/L0qHJA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\akshay.sankar\\internship-frontend\\temp-jwt\\temp-jwt.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\akshay.sankar\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.0.0\\microsoft.identitymodel.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\akshay.sankar\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.0.0\\microsoft.identitymodel.jsonwebtokens.8.0.0.nupkg.sha512",
+    "C:\\Users\\akshay.sankar\\.nuget\\packages\\microsoft.identitymodel.logging\\8.0.0\\microsoft.identitymodel.logging.8.0.0.nupkg.sha512",
+    "C:\\Users\\akshay.sankar\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.0.0\\microsoft.identitymodel.tokens.8.0.0.nupkg.sha512",
+    "C:\\Users\\akshay.sankar\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.0\\system.identitymodel.tokens.jwt.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

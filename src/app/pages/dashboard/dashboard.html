@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row gx-0">
+    <div class="col-md-2">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="col-md-10 p-5 bg-light min-vh-100">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+          <h2>Eligible Internships</h2>
+          <p class="text-muted mb-0">Browse internships that match your profile.</p>
+        </div>
+      </div>
+
+      <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status"></div>
+      </div>
+
+      <div *ngIf="!loading && errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4" *ngFor="let internship of internships">
+          <div class="card internship-card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+              <h4 class="card-title">{{ internship.title }}</h4>
+              <p class="text-muted mb-3">{{ internship.description }}</p>
+              <div class="internship-meta mb-3">
+                <div><strong>CGPA:</strong> {{ internship.minimumCGPA }}</div>
+                <div><strong>Backlogs:</strong> {{ internship.maximumBacklogs ?? 0 }}</div>
+                <div><strong>Department:</strong> {{ internship.department || 'All' }}</div>
+              </div>
+              <p class="mb-3"><strong>Deadline:</strong> {{ internship.deadline | date:'mediumDate' }}</p>
+              <button
+                class="btn btn-primary mt-auto"
+                [disabled]="!internship.isEligible"
+                (click)="applyInternship(internship.id)">
+                {{ internship.isEligible ? 'Apply Now' : 'Not Eligible' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!loading && internships.length === 0" class="alert alert-warning mt-4">
+        No internships available at the moment.
+      </div>
+    </div>
+  </div>
+</div>

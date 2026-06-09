@@ -1,0 +1,14 @@
+.card {
+  border-radius: 18px;
+}
+
+.table {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.btn-outline-success,
+.btn-outline-danger,
+.btn-success {
+  border-radius: 999px;
+}

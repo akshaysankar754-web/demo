@@ -1,0 +1,21 @@
+.login-page {
+  background:
+    radial-gradient(circle at top, #eef5ff 0%, #f8fbff 45%, #eef2ff 100%);
+}
+
+.login-card {
+  max-width: 420px;
+  border-radius: 24px;
+  border: 1px solid rgba(13, 110, 253, 0.12);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+.login-card .form-control {
+  border-radius: 14px;
+  padding: 0.75rem 0.9rem;
+}
+
+.login-card .btn-success {
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+}
